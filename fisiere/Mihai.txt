@@ -1,0 +1,6 @@
+
+Tema: 10000
+Nota: 3.0
+Predata in saptamana: 170
+Deadline: 4
+Feedback: hi
