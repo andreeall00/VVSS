@@ -49,6 +49,7 @@ public class ServiceTest {
     }
 
 //    @Test(expected = ValidationException.class)
+    @Test
     public void addStudent_invalid() {
 //        Student student = new Student("", "", -1, "");
 //        service.addStudent(student);
