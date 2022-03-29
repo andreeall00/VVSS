@@ -56,6 +56,8 @@ public class UI {
                 System.out.println("Date introduse gresit!");
             } catch (ArrayIndexOutOfBoundsException exception) {
                 System.out.println("Eroare la introducerea datelor!");
+            } catch (Exception exception) {
+                exception.printStackTrace();
             }
         }
     }
@@ -63,7 +65,7 @@ public class UI {
     /**
      * Afiseaza meniul de comenzi asupra studentilor
      */
-    private void meniuStudent() {
+    private void meniuStudent() throws Exception {
         while (true) {
             System.out.println("\n0.Iesire meniu student");
             System.out.println("1.Introducere student");
@@ -96,7 +98,7 @@ public class UI {
      * Adauga un student
      * @throws ValidationException daca datele studentul exista deja
      */
-    private void adaugaStudent() throws ValidationException {
+    private void adaugaStudent() throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Introduceti id student: ");
         String idStudent = scanner.next();
