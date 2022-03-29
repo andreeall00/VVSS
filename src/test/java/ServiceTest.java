@@ -1,4 +1,5 @@
 import domain.Student;
+import domain.Tema;
 import org.junit.Before;
 import org.junit.Test;
 import repository.NotaXMLRepo;
@@ -108,4 +109,23 @@ public class ServiceTest {
         Student result = service.addStudent(student);
         assertNull(result);
     }
+
+
+    @Test
+    public void addTema_valid_added() {
+        Tema tema = new Tema("27", "Ana Pop", 3, 1);
+        Tema result = service.addTema(tema);
+        assertNull(result);
+    }
+
+
+    @Test
+    public void addTema_duplicated_notAdded() {
+        Tema tema = new Tema("27", "desc", 3, 1);
+        Tema temaDup = new Tema("27", "desc2", 4, 2);
+        service.addTema(tema);
+        Tema result = service.addTema(temaDup);
+        assertEquals(temaDup, result);
+    }
+
 }
