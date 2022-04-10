@@ -188,7 +188,7 @@ public class UI {
     /**
      * Afiseaza comenzile pentru teme
      */
-    private void meniuTeme() {
+    private void meniuTeme() throws Exception {
         while (true) {
             System.out.println("\n0.Iesire meniu teme");
             System.out.println("1.Introducere tema");
@@ -226,7 +226,7 @@ public class UI {
      * Adauga o tema
      * @throws ValidationException daca tema exista deja
      */
-    private void adaugaTema() throws ValidationException{
+    private void adaugaTema() throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Introduceti nr tema: ");
         String nrTema = scanner.next();
@@ -331,7 +331,7 @@ public class UI {
     /**
      * Afiseaza comenzile disponibile pentru note
      */
-    private void meniuNote() {
+    private void meniuNote() throws Exception {
         while (true) {
             System.out.println("\n0.Iesire meniu note");
             System.out.println("1.Introducere nota");
@@ -361,7 +361,7 @@ public class UI {
      * Adauga o nota
      * @throws ValidationException daca nota exista deja
      */
-    private void adaugaNota() throws ValidationException {
+    private void adaugaNota() throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Introduceti id student: ");
         String idStudent = scanner.next();

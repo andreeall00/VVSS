@@ -79,13 +79,12 @@ public abstract class AbstractXMLRepository<ID, E extends HasID<ID>> extends Abs
      * @return null daca obiectul s-a salvat cu succes sau obiectul daca acesta exista deja in memorie
      */
    @Override
-    public E save(E entity) {
+    public E save(E entity) throws Exception {
        E entity1 = super.save(entity);
        if (entity1 == null) {
             //saveToFile(entity);
        writeToFile();
        }
-
         return entity1;
    }
     /**

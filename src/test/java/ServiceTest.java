@@ -112,21 +112,95 @@ public class ServiceTest {
     }
 
 
+
+
     @Test
-    public void addTema_valid_added() {
-        Tema tema = new Tema("27", "Ana Pop", 3, 1);
-        Tema result = service.addTema(tema);
-        assertNull(result);
+    public void addTema_emptyId_error() throws Exception {
+        Tema tema = new Tema("", "descr", 3, 2);
+        Exception thrown = assertThrows(
+                Exception.class,
+                () -> service.addTema(tema)
+        );
+        assertTrue(thrown.getMessage().contains("Numar tema invalid!"));
     }
 
+    @Test
+    public void addTema_emptyDesc_error() throws Exception {
+        Tema tema = new Tema("t1", "", 3, 2);
+        Exception thrown = assertThrows(
+                Exception.class,
+                () -> service.addTema(tema)
+        );
+        assertTrue(thrown.getMessage().contains("Descriere invalida!"));
+    }
 
     @Test
-    public void addTema_duplicated_notAdded() {
+    public void addTema_deadlineLess0_error() throws Exception {
+        Tema tema = new Tema("t1", "descr", -3, 2);
+        Exception thrown = assertThrows(
+                Exception.class,
+                () -> service.addTema(tema)
+        );
+        assertTrue(thrown.getMessage().contains("Deadlineul trebuie sa fie intre 1-14."));
+    }
+
+    @Test
+    public void addTema_assignedLess0_error() throws Exception {
+        Tema tema = new Tema("t1", "descr", 3, -2);
+        Exception thrown = assertThrows(
+                Exception.class,
+                () -> service.addTema(tema)
+        );
+        assertTrue(thrown.getMessage().contains("Saptamana primirii trebuie sa fie intre 1-14."));
+    }
+
+    @Test
+    public void addTema_duplicated_notAdded() throws Exception {
         Tema tema = new Tema("27", "desc", 3, 1);
         Tema temaDup = new Tema("27", "desc2", 4, 2);
         service.addTema(tema);
-        Tema result = service.addTema(temaDup);
-        assertEquals(temaDup, result);
+        Exception thrown = assertThrows(
+                Exception.class,
+                () -> service.addTema(temaDup)
+        );
+        assertTrue(thrown.getMessage().contains("Tema exista!"));
+    }
+
+    @Test
+    public void addTema_nullId_error() throws Exception {
+        Tema tema = new Tema(null, "descr", 3, 2);
+        Exception thrown = assertThrows(
+                Exception.class,
+                () -> service.addTema(tema)
+        );
+        assertTrue(thrown.getMessage().contains("Numar tema invalid!"));
+    }
+
+    @Test
+    public void addTema_deadlineGreater14_error() throws Exception {
+        Tema tema = new Tema("t1", "descr", 16, 2);
+        Exception thrown = assertThrows(
+                Exception.class,
+                () -> service.addTema(tema)
+        );
+        assertTrue(thrown.getMessage().contains("Deadlineul trebuie sa fie intre 1-14."));
+    }
+
+    @Test
+    public void addTema_assignedGreater14_error() throws Exception {
+        Tema tema = new Tema("t1", "descr", 3, 16);
+        Exception thrown = assertThrows(
+                Exception.class,
+                () -> service.addTema(tema)
+        );
+        assertTrue(thrown.getMessage().contains("Saptamana primirii trebuie sa fie intre 1-14."));
+    }
+
+    @Test
+    public void addTema_valid_added() throws Exception {
+        Tema tema = new Tema("27", "Ana Pop", 3, 1);
+        Tema result = service.addTema(tema);
+        assertNull(result);
     }
 
 }

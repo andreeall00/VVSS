@@ -120,9 +120,14 @@ public class Service {
      * @param tema - tema pe care o adauga
      * @return null daca s-a facut adaugarea sau tema daca aceasta exista deja
      */
-    public Tema addTema(Tema tema) {
+    public Tema addTema(Tema tema) throws Exception {
         temaValidator.validate(tema);
-        return temaFileRepository.save(tema);
+        Tema tema1 = temaFileRepository.save(tema);
+        //CHANGED
+        if (Objects.nonNull(tema1)) {
+            throw new Exception("Tema exista!");
+        }
+        return tema1;
     }
 
     /**
@@ -176,7 +181,7 @@ public class Service {
      * @param feedback - feedback-ul notei
      * @return null daca nota a fost adaugata sau nota daca aceasta exista deja
      */
-    public double addNota(Nota nota, String feedback) {
+    public double addNota(Nota nota, String feedback) throws Exception {
         notaValidator.validate(nota);
         Student student = studentFileRepository.findOne(nota.getIdStudent());
         Tema tema = temaFileRepository.findOne(nota.getIdTema());

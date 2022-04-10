@@ -33,7 +33,7 @@ public abstract class AbstractFileRepository<ID, E extends HasID<ID>> extends Ab
                 E entity = extractEntity(linie);
                 super.save(entity);
             }
-        } catch (IOException exception) {
+        } catch (Exception exception) {
             throw new ValidationException(exception.getMessage());
         }
     }
@@ -71,7 +71,7 @@ public abstract class AbstractFileRepository<ID, E extends HasID<ID>> extends Ab
      * @return null daca obiectul s-a salvat cu succes sau obiectul daca acesta exista deja in memorie
      */
     @Override
-    public E save(E entity) {
+    public E save(E entity) throws Exception {
         E entity1 = super.save(entity);
         if (entity1 == null) {
             saveToFile(entity);
